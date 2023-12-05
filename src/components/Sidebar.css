@@ -1,0 +1,15 @@
+.logo{
+    width: 60px;
+    height: 60px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.myBgDark{
+    background-color: var(--black);
+    border: none;
+    border-radius: 0px;
+    height: 50px;
+}
