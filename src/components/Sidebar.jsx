@@ -21,7 +21,6 @@ function Sidebar() {
           <button className="btn btn-dark myBgDark" onClick={() => handleClick("ordenes")}>Ordenes</button>
           <button className="btn btn-dark myBgDark" onClick={() => handleClick("productos")}>Productos</button>
           <button className="btn btn-dark myBgDark" onClick={() => handleClick("categorias")}>Categorias</button>
-          <button className="btn btn-dark myBgDark" onClick={() => handleClick("clientes")}>Clientes</button>
           <button className="btn btn-dark myBgDark mt-auto">Logout</button>
         </div>
       </div>

@@ -16,7 +16,6 @@ function Ordenes() {
       .get(`http://localhost:3000/products?includeinactive=true`)
       .then((response) => {
         setProductos(response.data.products);
-        console.log(response.data.products);
       });
   }, [trigger]);
 

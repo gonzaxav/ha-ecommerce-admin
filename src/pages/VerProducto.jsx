@@ -6,13 +6,12 @@ import axios from "axios";
 
 function VerProducto() {
   const baseUrl = import.meta.env.VITE_BASE_URL_API;
-  const navigate = useNavigate();
   const params = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/products/${params.id}`)
+      .get(`${baseUrl}products/${params.slug}`)
       .then((response) => {
         setProduct(response.data.product);
       });
@@ -37,37 +36,37 @@ function VerProducto() {
                     </div>
                     <div className="col-6 col-lg-7 mb-4 d-flex flex-column justify-content-center">
                       Nombre
-                      <h3 className="mb-5">{product.name}</h3>
+                      <h3 className="mb-5 orange">{product.name}</h3>
                       Descripción corta
-                      <h5>{product.shortDescription}</h5>
+                      <h5 className="gray">{product.shortDescription}</h5>
                     </div>
                     <div className="col-12 mb-4">
                       Descripción
-                      <h5>{product.description}</h5>
+                      <h5 className="gray">{product.description}</h5>
                     </div>
                     <div className="col-4 mb-4">
                       Precio
-                      <h5>$U {product.price}</h5>
+                      <h5 className="gray">$U {product.price}</h5>
                     </div>
                     <div className="col-4 mb-4">
                       Stock
-                      <h5>{product.stock}</h5>
+                      <h5 className="gray">{product.stock}</h5>
                     </div>
                     <div className="col-4 mb-4">
                       Categoría
-                      <h5>{product.category.name}</h5>
+                      <h5 className="gray">{product.category.name}</h5>
                     </div>
                     <div className="col-4 mb-4">
                       Destacado
-                      <h5>{product.featured ? "Si" : "No"}</h5>
+                      <h5 className="gray">{product.featured ? "Si" : "No"}</h5>
                     </div>
                     <div className="col-4 mb-4">
                       Activo?
-                      <h5>{product.isActive ? "Si" : "No"}</h5>
+                      <h5 className="gray">{product.isActive ? "Si" : "No"}</h5>
                     </div>
                     <div className="col-12 mb-4">
                       Slug
-                      <h5>{product.slug}</h5>
+                      <h5 className="gray">{product.slug}</h5>
                     </div>
                   </div>
                 </div>

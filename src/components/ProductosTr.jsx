@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function ProductosTr({ product }) {
@@ -10,15 +10,14 @@ function ProductosTr({ product }) {
     setIsActive(!isActive);
     axios
       .delete(`http://localhost:3000/products/${product.slug}`)
-      .then((response) => {});
   };
 
-  const handleClickVer = (id) => {
-    navigate(`${id}`);
+  const handleClickVer = (slug) => {
+    navigate(`${slug}`);
   };
 
-  const handleClickEditar = (id) => {
-    navigate(`editar/${id}`);
+  const handleClickEditar = (slug) => {
+    navigate(`editar/${slug}`);
   };
 
   return (
@@ -66,7 +65,7 @@ function ProductosTr({ product }) {
               </button>
               <button
                 className="btn btn-success"
-                onClick={() => handleClickEditar(product._id)}
+                onClick={() => handleClickEditar(product.slug)}
               >
                 Editar
               </button>

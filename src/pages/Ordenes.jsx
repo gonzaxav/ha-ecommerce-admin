@@ -37,7 +37,7 @@ function Ordenes() {
                   <tbody>
                     {ordenes &&
                       ordenes.map((order) => (
-                        <OrdenesTr order={order} />
+                        <OrdenesTr key={order._id} order={order} />
                       ))}
                   </tbody>
                 </table>

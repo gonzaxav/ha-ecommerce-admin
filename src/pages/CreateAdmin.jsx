@@ -52,7 +52,7 @@ function CreateAdmin() {
         <div className="row">
           <Sidebar />
           <div className="col-10 p-0 vh-100 d-flex flex-column">
-            <Topbar name="Admin" />
+            <Topbar name="Admin nuevo" />
             <section className="lightcream flex-grow-1 h-100 p-3">
               <div className="container">
                 <div className="row">

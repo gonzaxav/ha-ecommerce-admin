@@ -12,6 +12,9 @@ import EditOrden from "./pages/EditOrden";
 import VerProducto from "./pages/VerProducto";
 import CreateProducto from "./pages/CreateProducto";
 import Login from "./pages/Login";
+import EditProducto from "./pages/EditProducto";
+import CreateCategoria from "./pages/CreateCategoria";
+import EditCategoria from "./pages/EditCategoria";
 
 function App() {
   return (
@@ -30,11 +33,14 @@ function App() {
         <Route path="/ordenes/editar/:id" element={<EditOrden />} />
 
         <Route path="/productos" element={<Productos />} />
-        <Route path="/productos/:id" element={<VerProducto />} />
+        <Route path="/productos/:slug" element={<VerProducto />} />
         <Route path="/productos/crear" element={<CreateProducto />} />
-        <Route path="/productos/editar/:id" element={<Productos />} />
+        <Route path="/productos/editar/:slug" element={<EditProducto />} />
 
         <Route path="/categorias" element={<Categorias />} />
+        <Route path="/categorias/crear" element={<CreateCategoria />} />
+        <Route path="/categorias/editar/:slug" element={<EditCategoria />} />
+
         <Route path="/clientes" element={<Clientes />} />
       </Routes>
     </>
