@@ -42,6 +42,14 @@ section.lightcream{
   border-color: var(--bs-table-border-color);
 }
 
+.table-transparent tr.rowDisabled{
+  background-color: rgba(123, 123, 123, 0.2)
+}
+
+.table > :not(caption) > tr.rowDisabled > *{
+  color: rgba(108, 108, 108, 0.703);
+}
+
 .btn-orange{
   --bs-btn-color: var(--white);
   --bs-btn-bg: var(--orange);
@@ -61,4 +69,54 @@ section.lightcream{
 
 .myInputWidth{
   max-width: 500px;
+}
+
+.id {
+  display: inline-block;
+  width: 75px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.description{
+  display: inline-block;
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+i{
+  font-size: 24px;
+}
+
+i.mouseOver {
+  cursor: pointer;
+}
+
+i.green{
+  color: rgb(27, 130, 27);
+}
+
+i.red{
+  color: rgb(124, 27, 27);
+}
+
+.img {
+  height: 300px;
+}
+
+.text-bg-color h3{
+  color: var(--black);
+  font-weight: bold;
+  background-color: var(--orange);
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+.text-bg-color h5{
+  color: var(--black);
+  background-color: rgba(174, 144, 103, 0.2);
+  padding: 10px 20px;
+  border-radius: 5px;
 }

@@ -4,35 +4,56 @@ import axios from "axios";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import Modal from "react-bootstrap/Modal";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import AdminTr from "../components/AdminTr";
 
 function Admin() {
   const [admins, setAdmins] = useState(null);
+  const [trigger, setTrigger] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`http://localhost:3000/admins`).then((response) => {
       setAdmins(response.data.admins);
     });
-  }, []);
+  }, [trigger]);
 
-  const handleClick = () => {
+  const handleClickCrear = () => {
     navigate("crear");
-  }
+  };
+
+  const handleClickEditar = (id) => {
+    navigate(`editar/${id}`);
+  };
+
+  const handleClickEliminar = (id) => {
+    const deleteAdmin = async () => {
+      await axios({
+        method: "DELETE",
+        url: `http://localhost:3000/admins/${id}`,
+      });
+      setTrigger(!trigger);
+    };
+
+    deleteAdmin();
+  };
 
   return (
     <>
       <div className="container-fluid p-0">
         <div className="row">
           <Sidebar />
-          <div className="col p-0">
+          <div className="col-10 p-0 vh-100 d-flex flex-column">
             <Topbar name="Admin" />
-            <section className="lightcream h-100 p-3">
-              <button className="btn btn-primary mb-3" onClick={handleClick}>
+            <section className="lightcream flex-grow-1 h-100 p-3">
+              <button
+                className="btn btn-primary mb-3"
+                onClick={handleClickCrear}
+              >
                 Crear
               </button>
               <div className="rounded overflow-hidden">
-                <table className="table table-hover table-striped-columns table-transparent mb-0">
+                <table className="table table-hover table-striped-columns align-middle table-transparent mb-0">
                   <thead>
                     <tr>
                       <th scope="col">Id</th>
@@ -45,18 +66,7 @@ function Admin() {
                   <tbody>
                     {admins &&
                       admins.map((admin) => (
-                        <tr>
-                          <th scope="row">{admin._id}</th>
-                          <td>{admin.firstname}</td>
-                          <td>{admin.lastname}</td>
-                          <td>{admin.email}</td>
-                          <td>
-                            <button className="btn btn-success me-1">
-                              Editar
-                            </button>
-                            <button className="btn btn-orange">Eliminar</button>
-                          </td>
-                        </tr>
+                        <AdminTr key={admin._id} admin={admin} />
                       ))}
                   </tbody>
                 </table>

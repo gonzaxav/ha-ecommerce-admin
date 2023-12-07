@@ -12,7 +12,7 @@ function Sidebar() {
 
   return (
     <>
-      <div className="col-3 vh-100 bgDark text-light p-0">
+      <div className="col-2 vh-100 bgDark text-light p-0">
         <div className="d-flex flex-column gap-2 vh-100 py-5">
           <img className="logo align-self-center" src={Logo}></img>
           <h1 className="bold align-self-center mb-5">Casa de abajo</h1>

@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-function CreateAdmin() {
+function EditOrden() {
   const navigate = useNavigate();
+  const params = useParams();
 
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/admins/${params.id}`).then((response) => {
+      setFirstname(response.data.admin.firstname);
+      setLastname(response.data.admin.lastname);
+      setEmail(response.data.admin.email);
+    });
+  }, []);
 
   const handleFirstNameChange = (e) => {
     setFirstname(e.target.value);
@@ -21,29 +29,24 @@ function CreateAdmin() {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const createAdmin = async () => {
+    const updateAdmin = async () => {
       await axios({
-        method: "POST",
-        url: "http://localhost:3000/admins",
+        method: "PATCH",
+        url: `http://localhost:3000/admins/${params.id}`,
         data: {
           firstname: firstname,
           lastname: lastname,
           email: email,
-          password: password,
         },
       });
-
       navigate("/admin");
     };
 
-    createAdmin();
+    updateAdmin();
   };
 
   return (
@@ -99,22 +102,8 @@ function CreateAdmin() {
                         aria-describedby="email"
                       />
                     </div>
-                    <div className="input-group mb-3">
-                      <span className="input-group-text" id="password">
-                        Contraseña
-                      </span>
-                      <input
-                        value={password}
-                        onChange={handlePasswordChange}
-                        type="password"
-                        className="form-control"
-                        placeholder=""
-                        aria-label="contrasena"
-                        aria-describedby="password"
-                      />
-                    </div>
                     <button className="btn btn-orange" onClick={handleSubmit}>
-                      Crear
+                      Guardar
                     </button>
                   </div>
                 </div>
@@ -127,4 +116,4 @@ function CreateAdmin() {
   );
 }
 
-export default CreateAdmin;
+export default EditOrden;

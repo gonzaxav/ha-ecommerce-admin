@@ -1,0 +1,14 @@
+.myInput {
+  height: 30px;
+  max-width: 500px;
+  margin-left: auto;
+}
+
+.input-group {
+  --bs-border-radius: 50px;
+}
+
+.input-group span {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
