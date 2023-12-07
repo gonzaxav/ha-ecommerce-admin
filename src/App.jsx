@@ -11,13 +11,15 @@ import VerOrden from "./pages/VerOrden";
 import EditOrden from "./pages/EditOrden";
 import VerProducto from "./pages/VerProducto";
 import CreateProducto from "./pages/CreateProducto";
+import Login from "./pages/Login";
 
 function App() {
-
   return (
     <>
       <Routes>
         <Route path="/" element={<Dashboard />} />
+
+        <Route path="/login" element={<Login />} />
 
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/crear" element={<CreateAdmin />} />
@@ -32,12 +34,11 @@ function App() {
         <Route path="/productos/crear" element={<CreateProducto />} />
         <Route path="/productos/editar/:id" element={<Productos />} />
 
-
         <Route path="/categorias" element={<Categorias />} />
         <Route path="/clientes" element={<Clientes />} />
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
