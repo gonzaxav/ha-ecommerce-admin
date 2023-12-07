@@ -3,26 +3,16 @@ import { useState } from "react";
 import axios from "axios";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
-import { useNavigate } from "react-router-dom";
+import OrdenesTr from "../components/OrdenesTr";
 
 function Ordenes() {
   const [ordenes, setOrdenes] = useState(null);
-  const [trigger, setTrigger] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`http://localhost:3000/orders`).then((response) => {
       setOrdenes(response.data.orders);
     });
-  }, [trigger]);
-
-  const handleClickVer = (id) => {
-    navigate(`${id}`);
-  };
-
-  const handleClickEditar = (id) => {
-    navigate(`editar/${id}`);
-  };
+  }, []);
 
   return (
     <>
@@ -47,48 +37,7 @@ function Ordenes() {
                   <tbody>
                     {ordenes &&
                       ordenes.map((order) => (
-                        <tr>
-                          <th scope="row">{order._id}</th>
-                          <td>
-                            {order.client.firstname +
-                              " " +
-                              order.client.lastname}
-                          </td>
-                          <td>
-                            {"$U " +
-                              order.products.reduce(
-                                (accumulator, currentProduct) => {
-                                  const productTotal =
-                                    currentProduct.price * currentProduct.qty;
-                                  return accumulator + productTotal;
-                                },
-                                0
-                              )}
-                          </td>
-                          <td>
-                            {order.products.reduce(
-                              (accumulator, currentProduct) => {
-                                return accumulator + currentProduct.qty;
-                              },
-                              0
-                            ) + " unidades"}
-                          </td>
-                          <td>{order.orderstate}</td>
-                          <td>
-                            <button
-                              className="btn btn-primary me-1"
-                              onClick={() => handleClickVer(order._id)}
-                            >
-                              Ver
-                            </button>
-                            <button
-                              className="btn btn-success me-1"
-                              onClick={() => handleClickEditar(order._id)}
-                            >
-                              Editar
-                            </button>
-                          </td>
-                        </tr>
+                        <OrdenesTr order={order} />
                       ))}
                   </tbody>
                 </table>

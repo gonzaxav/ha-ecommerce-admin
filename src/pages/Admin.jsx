@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import Modal from "react-bootstrap/Modal";
-import { useNavigate } from "react-router-dom";
 import AdminTr from "../components/AdminTr";
 
 function Admin() {
+  const navigate = useNavigate();
   const [admins, setAdmins] = useState(null);
   const [trigger, setTrigger] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`http://localhost:3000/admins`).then((response) => {
@@ -20,22 +20,6 @@ function Admin() {
 
   const handleClickCrear = () => {
     navigate("crear");
-  };
-
-  const handleClickEditar = (id) => {
-    navigate(`editar/${id}`);
-  };
-
-  const handleClickEliminar = (id) => {
-    const deleteAdmin = async () => {
-      await axios({
-        method: "DELETE",
-        url: `http://localhost:3000/admins/${id}`,
-      });
-      setTrigger(!trigger);
-    };
-
-    deleteAdmin();
   };
 
   return (
@@ -66,7 +50,7 @@ function Admin() {
                   <tbody>
                     {admins &&
                       admins.map((admin) => (
-                        <AdminTr key={admin._id} admin={admin} />
+                        <AdminTr key={admin._id} admin={admin} trigger={trigger} setTrigger={setTrigger}/>
                       ))}
                   </tbody>
                 </table>

@@ -44,15 +44,15 @@ function ProductosTr({ product }) {
         <td>{product.shortDescription}</td>
         <td>
           {isActive ? (
-            <i
+            <button className="px-2 rounded"><i
               className="bi bi-check-circle mouseOver green"
               onClick={handleChangeIsActive}
-            ></i>
+            ></i></button>
           ) : (
-            <i
+            <button className="px-2 rounded"><i
               className="bi bi-x-circle mouseOver red"
               onClick={handleChangeIsActive}
-            ></i>
+            ></i></button>
           )}
         </td>
         <td>

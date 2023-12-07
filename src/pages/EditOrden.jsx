@@ -8,99 +8,64 @@ function EditOrden() {
   const navigate = useNavigate();
   const params = useParams();
 
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
+  const [order, setOrder] = useState(null);
+  const [orderstate, setOrderstate] = useState("");
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/admins/${params.id}`).then((response) => {
-      setFirstname(response.data.admin.firstname);
-      setLastname(response.data.admin.lastname);
-      setEmail(response.data.admin.email);
+    axios.get(`http://localhost:3000/orders/${params.id}`).then((response) => {
+      setOrderstate(response.data.order.orderstate);
+      setOrder(response.data.order);
     });
   }, []);
 
-  const handleFirstNameChange = (e) => {
-    setFirstname(e.target.value);
-  };
-  const handleLastNameChange = (e) => {
-    setLastname(e.target.value);
-  };
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleStateChange = (e) => {
+    setOrderstate(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const updateAdmin = async () => {
+    const updateOrder = async () => {
       await axios({
         method: "PATCH",
-        url: `http://localhost:3000/admins/${params.id}`,
+        url: `http://localhost:3000/orders/${params.id}`,
         data: {
-          firstname: firstname,
-          lastname: lastname,
-          email: email,
+          orderstate: orderstate,
         },
       });
-      navigate("/admin");
+      navigate("/ordenes");
     };
 
-    updateAdmin();
+    updateOrder();
   };
 
-  return (
+  return order && (
     <>
       <div className="container-fluid p-0">
         <div className="row">
           <Sidebar />
           <div className="col-10 p-0 vh-100 d-flex flex-column">
-            <Topbar name="Admin" />
+            <Topbar name={order._id} />
             <section className="lightcream flex-grow-1 h-100 p-3">
               <div className="container">
                 <div className="row">
                   <div className="col myInputWidth">
                     <div className="input-group mb-3">
                       <span className="input-group-text" id="firstname">
-                        Nombre
+                        Estado
                       </span>
-                      <input
-                        value={firstname}
-                        onChange={handleFirstNameChange}
-                        type="text"
-                        className="form-control"
-                        placeholder="Dios"
-                        aria-label="nombre"
-                        aria-describedby="firstname"
-                      />
-                    </div>
-                    <div className="input-group mb-3">
-                      <span className="input-group-text" id="lastname">
-                        Apellido
-                      </span>
-                      <input
-                        value={lastname}
-                        onChange={handleLastNameChange}
-                        type="text"
-                        className="form-control"
-                        placeholder="Todopoderoso"
-                        aria-label="apellido"
-                        aria-describedby="lastname"
-                      />
-                    </div>
-                    <div className="input-group mb-3">
-                      <span className="input-group-text" id="email">
-                        Email
-                      </span>
-                      <input
-                        value={email}
-                        onChange={handleEmailChange}
-                        type="email"
-                        className="form-control"
-                        placeholder="diostodopoderoso@gmail.com"
-                        aria-label="email"
-                        aria-describedby="email"
-                      />
+                      <select
+                        value={orderstate}
+                        onChange={handleStateChange}
+                        class="form-select"
+                        aria-label="Default select example"
+                      >
+                        <option value="pago pendiente">pago pendiente</option>
+                        <option value="rechazado">rechazado</option>
+                        <option value="pago">pago</option>
+                        <option value="en tránsito">en tránsito</option>
+                        <option value="entregado">entregado</option>
+                      </select>
                     </div>
                     <button className="btn btn-orange" onClick={handleSubmit}>
                       Guardar

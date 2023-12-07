@@ -48,7 +48,7 @@ function Ordenes() {
                       <th scope="col">Precio</th>
                       <th scope="col">Stock</th>
                       <th scope="col">Categoría</th>
-                      <th scope="col">Featured</th>
+                      <th scope="col">Destacado</th>
                       <th scope="col">Descripción corta</th>
                       <th scope="col">Activo?</th>
                       <th scope="col">Acciones</th>

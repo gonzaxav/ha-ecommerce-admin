@@ -58,12 +58,12 @@ function VerProducto() {
                       <h5>{product.category.name}</h5>
                     </div>
                     <div className="col-4 mb-4">
-                      Featured
-                      <h5>{String(product.featured)}</h5>
+                      Destacado
+                      <h5>{product.featured ? "Si" : "No"}</h5>
                     </div>
                     <div className="col-4 mb-4">
                       Activo?
-                      <h5>{String(product.isActive)}</h5>
+                      <h5>{product.isActive ? "Si" : "No"}</h5>
                     </div>
                     <div className="col-12 mb-4">
                       Slug

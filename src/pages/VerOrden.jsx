@@ -26,39 +26,60 @@ function VerOrden() {
               <Topbar name={order._id} />
               <section className="lightcream flex-grow-1 h-100 p-3">
                 <div className="container text-bg-color">
-                  <div className="row">
-                    <div className="col-6 mb-4">
+                  <div className="row rowGray">
+                    <div className="col-6">
+                      IdOrden
+                      <h5 className="gray">{order._id}</h5>
+                    </div>
+                    <div className="col-6">
+                      IdCliente
+                      <h5 className="gray">{order.client._id}</h5>
+                    </div>
+                    <div className="col-4">
                       Cliente
-                      <h3 className="mb-3">
+                      <h5 className="orange">
                         {order.client.firstname + " " + order.client.lastname}
-                      </h3>
-                      <h3 className="mb-5">{order.client._id}</h3>
+                      </h5>
                     </div>
-                    <div className="col-6 mb-4">
+                    <div className="col-4">
                       Estado
-                      <h5 className="mb-3">{order.orderstate}</h5>
+                      <h5 className="green">{order.orderstate}</h5>
                     </div>
-                    {order.products.map((product) => (
-                      <div className="row">
-                        <div className="col mb-4">
-                          ProductId
-                          <h5 className="mb-3">{product.productId}</h5>
-                        </div>
-                        <div className="col mb-4">
-                          Name
-                          <h5 className="mb-3">{product.name}</h5>
-                        </div>
-                        <div className="col mb-4">
-                          Price
-                          <h5 className="mb-3">{product.price}</h5>
-                        </div>
-                        <div className="col mb-4">
-                          Qty
-                          <h5 className="mb-3">{product.qty}</h5>
-                        </div>
-                      </div>
-                    ))}
+                    <div className="col-4">
+                      Total
+                      <h5 className="gray">
+                        {"$U " +
+                          order.products.reduce(
+                            (accumulator, currentProduct) => {
+                              const productTotal =
+                                currentProduct.price * currentProduct.qty;
+                              return accumulator + productTotal;
+                            },
+                            0
+                          )}
+                      </h5>
+                    </div>
                   </div>
+                  {order.products.map((product) => (
+                    <div className="row rowGray my-2">
+                      <div className="col">
+                        IdProducto
+                        <h6 className="gray">{product.productId}</h6>
+                      </div>
+                      <div className="col">
+                        Nombre
+                        <h6 className="gray">{product.name}</h6>
+                      </div>
+                      <div className="col">
+                        Precio
+                        <h6 className="gray">{product.price}</h6>
+                      </div>
+                      <div className="col">
+                        Cantidad
+                        <h6 className="gray">{product.qty}</h6>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </section>
             </div>

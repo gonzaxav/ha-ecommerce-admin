@@ -57,65 +57,61 @@ function CreateAdmin() {
               <div className="container">
                 <div className="row">
                   <div className="col myInputWidth">
-                    <div className="input-group mb-3">
-                      <span className="input-group-text" id="firstname">
-                        Nombre
-                      </span>
-                      <input
-                        value={firstname}
-                        onChange={handleFirstNameChange}
-                        type="text"
-                        className="form-control"
-                        placeholder="Dios"
-                        aria-label="nombre"
-                        aria-describedby="firstname"
-                      />
-                    </div>
-                    <div className="input-group mb-3">
-                      <span className="input-group-text" id="lastname">
-                        Apellido
-                      </span>
-                      <input
-                        value={lastname}
-                        onChange={handleLastNameChange}
-                        type="text"
-                        className="form-control"
-                        placeholder="Todopoderoso"
-                        aria-label="apellido"
-                        aria-describedby="lastname"
-                      />
-                    </div>
-                    <div className="input-group mb-3">
-                      <span className="input-group-text" id="email">
-                        Email
-                      </span>
-                      <input
-                        value={email}
-                        onChange={handleEmailChange}
-                        type="email"
-                        className="form-control"
-                        placeholder="diostodopoderoso@gmail.com"
-                        aria-label="email"
-                        aria-describedby="email"
-                      />
-                    </div>
-                    <div className="input-group mb-3">
-                      <span className="input-group-text" id="password">
-                        Contraseña
-                      </span>
-                      <input
-                        value={password}
-                        onChange={handlePasswordChange}
-                        type="password"
-                        className="form-control"
-                        placeholder=""
-                        aria-label="contrasena"
-                        aria-describedby="password"
-                      />
-                    </div>
-                    <button className="btn btn-orange" onClick={handleSubmit}>
-                      Crear
-                    </button>
+                    <form onSubmit={handleSubmit}>
+                      <div className="input-group mb-3">
+                        <span className="input-group-text" id="firstname">
+                          Nombre
+                        </span>
+                        <input
+                          value={firstname}
+                          onChange={handleFirstNameChange}
+                          type="text"
+                          className="form-control"
+                          aria-label="nombre"
+                          aria-describedby="firstname"
+                        />
+                      </div>
+                      <div className="input-group mb-3">
+                        <span className="input-group-text" id="lastname">
+                          Apellido
+                        </span>
+                        <input
+                          value={lastname}
+                          onChange={handleLastNameChange}
+                          type="text"
+                          className="form-control"
+                          aria-label="apellido"
+                          aria-describedby="lastname"
+                        />
+                      </div>
+                      <div className="input-group mb-3">
+                        <span className="input-group-text" id="email">
+                          Email
+                        </span>
+                        <input
+                          value={email}
+                          onChange={handleEmailChange}
+                          type="email"
+                          className="form-control"
+                          aria-label="email"
+                          aria-describedby="email"
+                        />
+                      </div>
+                      <div className="input-group mb-3">
+                        <span className="input-group-text" id="password">
+                          Contraseña
+                        </span>
+                        <input
+                          value={password}
+                          onChange={handlePasswordChange}
+                          type="password"
+                          className="form-control"
+                          aria-label="contrasena"
+                          aria-describedby="password"
+                        />
+                      </div>
+                      <button type="submit" className="btn btn-orange">Crear</button>
+                    </form>
                   </div>
                 </div>
               </div>

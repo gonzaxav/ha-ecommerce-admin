@@ -10,6 +10,7 @@ import EditAdmin from "./pages/EditAdmin";
 import VerOrden from "./pages/VerOrden";
 import EditOrden from "./pages/EditOrden";
 import VerProducto from "./pages/VerProducto";
+import CreateProducto from "./pages/CreateProducto";
 
 function App() {
 
@@ -28,7 +29,7 @@ function App() {
 
         <Route path="/productos" element={<Productos />} />
         <Route path="/productos/:id" element={<VerProducto />} />
-        <Route path="/productos/crear" element={<Productos />} />
+        <Route path="/productos/crear" element={<CreateProducto />} />
         <Route path="/productos/editar/:id" element={<Productos />} />
 
 
