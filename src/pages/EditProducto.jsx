@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-function CreateProducto() {
+function EditProducto() {
   const navigate = useNavigate();
+  const params = useParams();
 
   const [categories, setCategories] = useState(null);
 
@@ -14,12 +15,12 @@ function CreateProducto() {
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
   const [category, setCategory] = useState("");
-  const [featured, setFeatured] = useState(true);
+  const [featured, setFeatured] = useState("");
   const [shortDescription, setShortDescription] = useState("");
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/category/`)
+      .get(`http://localhost:3000/category/?includeinactive=true`)
       .then((response) => {
         setCategories(response.data.categories);
       });
@@ -41,30 +42,43 @@ function CreateProducto() {
     setCategory(e.target.value);
   };
   const handleFeaturedChange = (e) => {
-    setFeatured(e.target.value === "true" ? true : false);
+    setFeatured(e.target.value);
   };
   const handleShortDescriptionChange = (e) => {
     setShortDescription(e.target.value);
   };
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/products/${params.slug}`)
+      .then((response) => {
+        setName(response.data.product.name);
+        setDescription(response.data.product.description);
+        setPrice(response.data.product.price);
+        setStock(response.data.product.stock);
+        setCategory(response.data.product.category);
+        setFeatured(response.data.product.featured);
+        setShortDescription(response.data.product.shortDescription);
+      });
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
 
-    const createProducto = async () => {
+    const updateAdmin = async () => {
       await axios({
-        method: "POST",
-        url: "http://localhost:3000/products",
+        method: "PATCH",
+        url: `http://localhost:3000/products/${params.slug}`,
         data: formData,
         headers: {
             "content-Type": "multipart/form-data",
         }
       });
-
       navigate("/productos");
     };
 
-    createProducto();
+    updateAdmin();
   };
 
   return (
@@ -74,7 +88,7 @@ function CreateProducto() {
           <div className="row">
             <Sidebar />
             <div className="col-10 p-0 vh-100 d-flex flex-column">
-              <Topbar name="Producto nuevo" />
+              <Topbar name={params.slug} />
               <section className="lightcream flex-grow-1 h-100 p-3">
                 <div className="container">
                   <div className="row">
@@ -192,7 +206,7 @@ function CreateProducto() {
                             name="photo"
                           />
                         </div>
-                        <button className="btn btn-orange">Crear</button>
+                        <button className="btn btn-orange">Guardar</button>
                       </form>
                     </div>
                   </div>
@@ -206,4 +220,4 @@ function CreateProducto() {
   );
 }
 
-export default CreateProducto;
+export default EditProducto;

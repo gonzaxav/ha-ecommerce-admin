@@ -39,45 +39,46 @@ function EditOrden() {
     updateOrder();
   };
 
-  return order && (
-    <>
-      <div className="container-fluid p-0">
-        <div className="row">
-          <Sidebar />
-          <div className="col-10 p-0 vh-100 d-flex flex-column">
-            <Topbar name={order._id} />
-            <section className="lightcream flex-grow-1 h-100 p-3">
-              <div className="container">
-                <div className="row">
-                  <div className="col myInputWidth">
-                    <div className="input-group mb-3">
-                      <span className="input-group-text" id="firstname">
-                        Estado
-                      </span>
-                      <select
-                        value={orderstate}
-                        onChange={handleStateChange}
-                        class="form-select"
-                        aria-label="Default select example"
-                      >
-                        <option value="pago pendiente">pago pendiente</option>
-                        <option value="rechazado">rechazado</option>
-                        <option value="pago">pago</option>
-                        <option value="en tránsito">en tránsito</option>
-                        <option value="entregado">entregado</option>
-                      </select>
+  return (
+    order && (
+      <>
+        <div className="container-fluid p-0">
+          <div className="row">
+            <Sidebar />
+            <div className="col-10 p-0 vh-100 d-flex flex-column">
+              <Topbar name={order._id} />
+              <section className="lightcream flex-grow-1 h-100 p-3">
+                <div className="container">
+                  <div className="row">
+                    <div className="col myInputWidth">
+                      <div className="input-group mb-3">
+                        <span className="input-group-text" id="firstname">
+                          Estado
+                        </span>
+                        <select
+                          value={orderstate}
+                          onChange={handleStateChange}
+                          className="form-select"
+                        >
+                          <option value="pago pendiente">pago pendiente</option>
+                          <option value="rechazado">rechazado</option>
+                          <option value="pago">pago</option>
+                          <option value="en tránsito">en tránsito</option>
+                          <option value="entregado">entregado</option>
+                        </select>
+                      </div>
+                      <button className="btn btn-orange" onClick={handleSubmit}>
+                        Guardar
+                      </button>
                     </div>
-                    <button className="btn btn-orange" onClick={handleSubmit}>
-                      Guardar
-                    </button>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            </div>
           </div>
         </div>
-      </div>
-    </>
+      </>
+    )
   );
 }
 

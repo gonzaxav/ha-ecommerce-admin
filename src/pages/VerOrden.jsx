@@ -6,12 +6,11 @@ import axios from "axios";
 
 function VerOrden() {
   const baseUrl = import.meta.env.VITE_BASE_URL_API;
-  const navigate = useNavigate();
   const params = useParams();
   const [order, setOrder] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/orders/${params.id}`).then((response) => {
+    axios.get(`${baseUrl}orders/${params.id}`).then((response) => {
       setOrder(response.data.order);
     });
   }, []);
@@ -61,7 +60,7 @@ function VerOrden() {
                     </div>
                   </div>
                   {order.products.map((product) => (
-                    <div className="row rowGray my-2">
+                    <div className="row rowGray my-2" key={product._id}>
                       <div className="col">
                         IdProducto
                         <h6 className="gray">{product.productId}</h6>
