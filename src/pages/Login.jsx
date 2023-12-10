@@ -29,7 +29,7 @@ function Login() {
   };
   return (
     <>
-      <section className="section-login white">
+      <section className="section-login">
         <div className="container d-flex align-items-center justify-content-center vh-100">
           <div className="row row-form">
             <div className=" col-12 login">

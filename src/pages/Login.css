@@ -18,3 +18,13 @@
     position: relative;
     bottom: 100px;
 }
+.div-form {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px var(--darkcream);
+  }
+
+  .section-login {
+    background-color: var(--cream)
+  }
