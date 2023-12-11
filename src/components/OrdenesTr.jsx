@@ -32,13 +32,13 @@ function OrdenesTr({order}) {
         <td>{order.orderstate}</td>
         <td>
           <button
-            className="btn btn-primary me-1"
+            className="btn btn-transparent btn-orange-transparent me-1"
             onClick={() => handleClickVer(order._id)}
           >
             Ver
           </button>
           <button
-            className="btn btn-success me-1"
+            className="btn btn-transparent btn-cream-transparent me-1"
             onClick={() => handleClickEditar(order._id)}
           >
             Editar

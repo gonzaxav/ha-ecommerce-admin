@@ -41,7 +41,7 @@ function CategoriaTr({ categoria }) {
         </td>
         <td>
           <button
-            className="btn btn-success me-1"
+            className="btn btn-transparent btn-cream-transparent me-1"
             onClick={() => handleClickEditar(categoria.slug)}
           >
             Editar

@@ -29,13 +29,13 @@ function AdminTr({admin, trigger, setTrigger}) {
         <td>{admin.email}</td>
         <td>
           <button
-            className="btn btn-success me-1"
+            className="btn btn-transparent btn-cream-transparent me-1"
             onClick={() => handleClickEditar(admin._id)}
           >
             Editar
           </button>
           <button
-            className="btn btn-orange"
+            className="btn btn-transparent btn-black-transparent"
             onClick={() => handleClickEliminar(admin._id)}
           >
             Eliminar

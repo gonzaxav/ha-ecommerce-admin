@@ -206,7 +206,7 @@ function EditProducto() {
                             name="photo"
                           />
                         </div>
-                        <button className="btn btn-orange">Guardar</button>
+                        <button className="btn btn-transparent btn-orange-transparent">Guardar</button>
                       </form>
                     </div>
                   </div>

@@ -58,13 +58,13 @@ function ProductosTr({ product }) {
           {
             <>
               <button
-                className="btn btn-primary me-1"
+                className="btn btn-transparent btn-orange-transparent me-1"
                 onClick={() => handleClickVer(product.slug)}
               >
                 Ver
               </button>
               <button
-                className="btn btn-success"
+                className="btn btn-transparent btn-cream-transparent"
                 onClick={() => handleClickEditar(product.slug)}
               >
                 Editar

@@ -192,7 +192,7 @@ function CreateProducto() {
                             name="photo"
                           />
                         </div>
-                        <button className="btn btn-orange">Crear</button>
+                        <button className="btn btn-orange-fill">Crear</button>
                       </form>
                     </div>
                   </div>

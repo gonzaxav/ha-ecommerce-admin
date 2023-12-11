@@ -31,7 +31,7 @@ function Categorias() {
             <section className="lightcream flex-grow-1 h-100 p-3">
               <div className="rounded overflow-hidden">
                 <button
-                  className="btn btn-primary mb-3"
+                  className="btn btn-orange-fill mb-3"
                   onClick={handleClickCrear}
                 >
                   Crear

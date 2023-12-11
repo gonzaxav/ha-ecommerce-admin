@@ -110,7 +110,7 @@ function CreateAdmin() {
                           aria-describedby="password"
                         />
                       </div>
-                      <button type="submit" className="btn btn-orange">Crear</button>
+                      <button type="submit" className="btn btn-orange-fill">Crear</button>
                     </form>
                   </div>
                 </div>

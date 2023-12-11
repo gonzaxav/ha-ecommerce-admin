@@ -67,7 +67,7 @@ function EditOrden() {
                           <option value="entregado">entregado</option>
                         </select>
                       </div>
-                      <button className="btn btn-orange" onClick={handleSubmit}>
+                      <button className="btn btn-transparent btn-orange-transparent" onClick={handleSubmit}>
                         Guardar
                       </button>
                     </div>

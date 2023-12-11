@@ -70,7 +70,7 @@ function CreateCategoria() {
                           name="photo"
                         />
                       </div>
-                      <button type="submit" className="btn btn-orange">
+                      <button type="submit" className="btn btn-orange-fill">
                         Crear
                       </button>
                     </form>
