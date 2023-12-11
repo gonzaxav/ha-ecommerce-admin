@@ -2,15 +2,16 @@ import React from "react";
 import "./Login.css";
 import axios from "axios";
 import { useState } from "react";
-/* import { useDispatch } from "react-redux"; */
-/* import { login } from "../redux/clientSlice"; */
+import { useDispatch } from "react-redux";
+import { login } from "../redux/adminSlice";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  /* const dispatch = useDispatch(); */
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [msg, setMsg] = useState(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -23,9 +24,9 @@ function Login() {
         password,
       },
     });
-    /* dispatch(login(response.data)); */
-    console.log(response.data.token);
-    navigate("/");
+    response.data.msg && setMsg(response.data.msg);
+    response.data.token &&
+      (dispatch(login(response.data.token)), navigate("/"));
   };
   return (
     <>
@@ -67,6 +68,8 @@ function Login() {
                       id="password"
                     />
                   </div>
+
+                  <p className="text-danger"> {msg && msg}&nbsp;</p>
                   <div className="div-btn col-6  mb-3  d-flex">
                     <button
                       type="submit"
