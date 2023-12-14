@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function AdminTr({admin, trigger, setTrigger}) {
+  const apiUrl = import.meta.env.VITE_BASE_URL_API;
   const navigate = useNavigate();
 
   const handleClickEditar = (id) => {
@@ -12,7 +13,7 @@ function AdminTr({admin, trigger, setTrigger}) {
     const deleteAdmin = async () => {
       await axios({
         method: "DELETE",
-        url: `http://localhost:3000/admins/${id}`,
+        url: `${apiUrl}admins/${id}`,
       });
       setTrigger(!trigger);
     };

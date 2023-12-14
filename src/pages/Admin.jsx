@@ -8,15 +8,17 @@ import Modal from "react-bootstrap/Modal";
 import AdminTr from "../components/AdminTr";
 
 function Admin() {
+  const apiUrl = import.meta.env.VITE_BASE_URL_API;
   const navigate = useNavigate();
   const [admins, setAdmins] = useState(null);
   const [trigger, setTrigger] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/admins`).then((response) => {
+    axios.get(`${apiUrl}admins?buscar=${search}`).then((response) => {
       setAdmins(response.data.admins);
     });
-  }, [trigger]);
+  }, [trigger, search]);
 
   const handleClickCrear = () => {
     navigate("crear");
@@ -24,19 +26,23 @@ function Admin() {
 
   return (
     <>
-      <div className="container-fluid p-0">
-        <div className="row">
+      <div className="container-fluid g-0">
+        <div className="row g-0">
           <Sidebar />
-          <div className="col-10 p-0 vh-100 d-flex flex-column">
-            <Topbar name="Admin" />
-            <section className="lightcream flex-grow-1 h-100 p-3">
+          <div className="col-10 g-0 d-flex flex-column">
+            <Topbar
+              name="Admin"
+              placeholder="por id, nombre, apellido, email"
+              setSearch={setSearch}
+            />
+            <section className="lightcream flex-grow-1 p-3">
               <button
                 className="btn btn-orange-fill mb-3"
                 onClick={handleClickCrear}
               >
                 Crear
               </button>
-              <div className="rounded overflow-hidden">
+              <div className="rounded">
                 <table className="table table-hover table-striped-columns align-middle table-transparent mb-0">
                   <thead>
                     <tr>
@@ -50,7 +56,12 @@ function Admin() {
                   <tbody>
                     {admins &&
                       admins.map((admin) => (
-                        <AdminTr key={admin._id} admin={admin} trigger={trigger} setTrigger={setTrigger}/>
+                        <AdminTr
+                          key={admin._id}
+                          admin={admin}
+                          trigger={trigger}
+                          setTrigger={setTrigger}
+                        />
                       ))}
                   </tbody>
                 </table>

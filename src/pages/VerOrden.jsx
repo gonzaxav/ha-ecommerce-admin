@@ -5,12 +5,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function VerOrden() {
-  const baseUrl = import.meta.env.VITE_BASE_URL_API;
+  const apiUrl = import.meta.env.VITE_BASE_URL_API;
   const params = useParams();
   const [order, setOrder] = useState(null);
 
   useEffect(() => {
-    axios.get(`${baseUrl}orders/${params.id}`).then((response) => {
+    axios.get(`${apiUrl}orders/${params.id}`).then((response) => {
       setOrder(response.data.order);
     });
   }, []);
@@ -18,12 +18,12 @@ function VerOrden() {
   return (
     order && (
       <>
-        <div className="container-fluid p-0">
-          <div className="row">
+        <div className="container-fluid g-0">
+          <div className="row g-0">
             <Sidebar />
-            <div className="col-10 p-0 vh-100 d-flex flex-column">
+            <div className="col-10 g-0 d-flex flex-column">
               <Topbar name={order._id} />
-              <section className="lightcream flex-grow-1 h-100 p-3">
+              <section className="lightcream flex-grow-1 p-3">
                 <div className="container text-bg-color">
                   <div className="row rowGray">
                     <div className="col-6">

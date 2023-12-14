@@ -5,32 +5,31 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function VerProducto() {
-  const baseUrl = import.meta.env.VITE_BASE_URL_API;
+  const apiUrl = import.meta.env.VITE_BASE_URL_API;
+  const supabaseUrl = import.meta.env.VITE_BASE_URL_SUPABASE;
   const params = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`${baseUrl}products/${params.slug}`)
-      .then((response) => {
-        setProduct(response.data.product);
-      });
+    axios.get(`${apiUrl}products/${params.slug}`).then((response) => {
+      setProduct(response.data.product);
+    });
   }, []);
 
   return (
     product && (
       <>
-        <div className="container-fluid p-0">
-          <div className="row">
+        <div className="container-fluid g-0">
+          <div className="row g-0">
             <Sidebar />
-            <div className="col-10 p-0 vh-100 d-flex flex-column">
+            <div className="col-10 g-0 d-flex flex-column">
               <Topbar name={product.name} />
-              <section className="lightcream flex-grow-1 h-100 p-3">
+              <section className="lightcream flex-grow-1 p-3">
                 <div className="container text-bg-color">
-                  <div className="row">
+                  <div className="row g-0">
                     <div className="col-6 col-lg-5 mb-4">
                       <img
-                        src={`${baseUrl}img/${product.photo[0]}`}
+                        src={`${supabaseUrl}img/${product.photo[0]}`}
                         className="img"
                       ></img>
                     </div>

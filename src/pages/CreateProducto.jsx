@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function CreateProducto() {
+  const apiUrl = import.meta.env.VITE_BASE_URL_API;
   const navigate = useNavigate();
 
   const [categories, setCategories] = useState(null);
@@ -18,11 +19,9 @@ function CreateProducto() {
   const [shortDescription, setShortDescription] = useState("");
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/category/`)
-      .then((response) => {
-        setCategories(response.data.categories);
-      });
+    axios.get(`${apiUrl}category/`).then((response) => {
+      setCategories(response.data.categories);
+    });
   }, []);
 
   const handleNameChange = (e) => {
@@ -54,11 +53,11 @@ function CreateProducto() {
     const createProducto = async () => {
       await axios({
         method: "POST",
-        url: "http://localhost:3000/products",
+        url: "${apiUrl}products",
         data: formData,
         headers: {
-            "content-Type": "multipart/form-data",
-        }
+          "content-Type": "multipart/form-data",
+        },
       });
 
       navigate("/productos");
@@ -70,14 +69,14 @@ function CreateProducto() {
   return (
     categories && (
       <>
-        <div className="container-fluid p-0">
-          <div className="row">
+        <div className="container-fluid g-0">
+          <div className="row g-0">
             <Sidebar />
-            <div className="col-10 p-0 vh-100 d-flex flex-column">
+            <div className="col-10 g-0 d-flex flex-column">
               <Topbar name="Producto nuevo" />
-              <section className="lightcream flex-grow-1 h-100 p-3">
+              <section className="lightcream flex-grow-1 p-3">
                 <div className="container">
-                  <div className="row">
+                  <div className="row g-0">
                     <div className="col myInputWidth">
                       <form onSubmit={handleSubmit}>
                         <div className="input-group mb-3">
@@ -168,7 +167,10 @@ function CreateProducto() {
                           </select>
                         </div>
                         <div className="input-group mb-3">
-                          <span className="input-group-text" id="shortDescription">
+                          <span
+                            className="input-group-text"
+                            id="shortDescription"
+                          >
                             Descripcion corta
                           </span>
                           <textarea

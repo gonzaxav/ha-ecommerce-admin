@@ -5,17 +5,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function EditCategoria() {
+  const apiUrl = import.meta.env.VITE_BASE_URL_API;
   const navigate = useNavigate();
   const params = useParams();
 
   const [name, setName] = useState("");
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/category/${params.slug}`)
-      .then((response) => {
-        setName(response.data.category.name);
-      });
+    axios.get(`${apiUrl}category/${params.slug}`).then((response) => {
+      setName(response.data.category.name);
+    });
   }, []);
 
   const handleNameChange = (e) => {
@@ -29,7 +28,7 @@ function EditCategoria() {
     const updateCategory = async () => {
       await axios({
         method: "PATCH",
-        url: `http://localhost:3000/category/${params.slug}`,
+        url: `${apiUrl}category/${params.slug}`,
         data: formData,
         headers: {
           "content-Type": "multipart/form-data",
@@ -43,14 +42,14 @@ function EditCategoria() {
 
   return (
     <>
-      <div className="container-fluid p-0">
-        <div className="row">
+      <div className="container-fluid g-0">
+        <div className="row g-0">
           <Sidebar />
-          <div className="col-10 p-0 vh-100 d-flex flex-column">
+          <div className="col-10 g-0 d-flex flex-column">
             <Topbar name={params.slug} />
-            <section className="lightcream flex-grow-1 h-100 p-3">
+            <section className="lightcream flex-grow-1 p-3">
               <div className="container">
-                <div className="row">
+                <div className="row g-0">
                   <div className="col myInputWidth">
                     <form onSubmit={handleSubmit}>
                       <div className="input-group mb-3">
@@ -78,7 +77,9 @@ function EditCategoria() {
                           name="photo"
                         />
                       </div>
-                      <button className="btn btn-transparent btn-orange-transparent">Guardar</button>
+                      <button className="btn btn-transparent btn-orange-transparent">
+                        Guardar
+                      </button>
                     </form>
                   </div>
                 </div>

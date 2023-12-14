@@ -1,15 +1,19 @@
-.logo{
-    width: 60px;
-    height: 60px;
+.sidebar {
+  position: fixed;
 }
 
-.bold{
-    font-weight: bold;
+.logo {
+  width: 60px;
+  height: 60px;
 }
 
-.myBgDark{
-    background-color: var(--black);
-    border: none;
-    border-radius: 0px;
-    height: 50px;
+.bold {
+  font-weight: bold;
+}
+
+.myBgDark {
+  background-color: var(--black);
+  border: none;
+  border-radius: 0px;
+  height: 50px;
 }

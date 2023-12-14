@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function EditAdmin() {
+  const apiUrl = import.meta.env.VITE_BASE_URL_API;
   const navigate = useNavigate();
   const params = useParams();
 
@@ -13,7 +14,7 @@ function EditAdmin() {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/admins/${params.id}`).then((response) => {
+    axios.get(`${apiUrl}admins/${params.id}`).then((response) => {
       setFirstname(response.data.admin.firstname);
       setLastname(response.data.admin.lastname);
       setEmail(response.data.admin.email);
@@ -36,7 +37,7 @@ function EditAdmin() {
     const updateAdmin = async () => {
       await axios({
         method: "PATCH",
-        url: `http://localhost:3000/admins/${params.id}`,
+        url: `${apiUrl}admins/${params.id}`,
         data: {
           firstname: firstname,
           lastname: lastname,
@@ -51,14 +52,14 @@ function EditAdmin() {
 
   return (
     <>
-      <div className="container-fluid p-0">
-        <div className="row">
+      <div className="container-fluid g-0">
+        <div className="row g-0">
           <Sidebar />
-          <div className="col-10 p-0 vh-100 d-flex flex-column">
+          <div className="col-10 g-0 d-flex flex-column">
             <Topbar name={firstname + " " + lastname} />
-            <section className="lightcream flex-grow-1 h-100 p-3">
+            <section className="lightcream flex-grow-1 p-3">
               <div className="container">
-                <div className="row">
+                <div className="row g-0">
                   <div className="col myInputWidth">
                     <div className="input-group mb-3">
                       <span className="input-group-text" id="firstname">
@@ -102,7 +103,10 @@ function EditAdmin() {
                         aria-describedby="email"
                       />
                     </div>
-                    <button className="btn btn-transparent btn-orange-transparent" onClick={handleSubmit}>
+                    <button
+                      className="btn btn-transparent btn-orange-transparent"
+                      onClick={handleSubmit}
+                    >
                       Guardar
                     </button>
                   </div>

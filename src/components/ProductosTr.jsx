@@ -3,13 +3,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function ProductosTr({ product }) {
+  const apiUrl = import.meta.env.VITE_BASE_URL_API;
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(product.isActive);
 
   const handleChangeIsActive = () => {
     setIsActive(!isActive);
     axios
-      .delete(`http://localhost:3000/products/${product.slug}`)
+      .delete(`${apiUrl}products/${product.slug}`)
   };
 
   const handleClickVer = (slug) => {

@@ -3,13 +3,14 @@ import { useState } from "react";
 import axios from "axios";
 
 function CategoriaTr({ categoria }) {
+  const apiUrl = import.meta.env.VITE_BASE_URL_API;
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState(categoria.isActive);
 
   const handleChangeIsActive = () => {
     setIsActive(!isActive);
     axios
-      .delete(`http://localhost:3000/category/${categoria.slug}`)
+      .delete(`${apiUrl}category/${categoria.slug}`)
   };
 
   const handleClickEditar = (slug) => {

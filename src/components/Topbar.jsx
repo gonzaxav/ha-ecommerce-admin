@@ -1,28 +1,41 @@
 import "./Topbar.css";
+import Logo from "../img/avatar.png";
+import { useState } from "react";
 
-function Topbar({ name }) {
+function Topbar({ name, placeholder, setSearch }) {
+  const [searchInput, setSearchInput] = useState("");
+
   return (
     <>
-      <section className="white">
+      <section className="white topbar">
         <div className="px-5 py-3 d-flex flex-row gap-5 align-items-center">
           <h1 className="bold">{name}</h1>
           <div className="input-group myInput mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text" id="basic-addon1">
-              <i className="bi bi-search"></i>
+            <div className="input-group-prepend searchIcon">
+              <span className="input-group-text" id="search">
+                Buscar
               </span>
             </div>
             <input
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
               type="text"
-              className="form-control"
-              placeholder="Buscar id, ordenes, clientes, productos"
+              className="form-control searchInput"
+              placeholder={placeholder}
               aria-label="Username"
-              aria-describedby="basic-addon1"
+              aria-describedby="search"
             />
+            <button
+              className="btn btn-light searchButton"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              onClick={() => setSearch(searchInput)}
+            >
+              <i className="bi bi-search"></i>
+            </button>
           </div>
-          <button className="">
-            <img className="logo"></img>
-          </button>
+          <img className="logo" src={Logo}></img>
         </div>
       </section>
     </>

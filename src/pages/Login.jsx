@@ -7,6 +7,7 @@ import { login } from "../redux/adminSlice";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const apiUrl = import.meta.env.VITE_BASE_URL_API;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function Login() {
     e.preventDefault();
     const response = await axios({
       method: "POST",
-      url: "http://localhost:3000/admin/tokens",
+      url: "${apiUrl}admin/tokens",
       data: {
         email,
 

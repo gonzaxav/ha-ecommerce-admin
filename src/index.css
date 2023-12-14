@@ -121,7 +121,7 @@ section.lightcream{
 }
 
 .btn-orange-fill{
-  --bs-btn-color: var(--black);
+  --bs-btn-color: var(--white);
   --bs-btn-hover-color: var(--white);
   
   --bs-btn-bg: var(--orange);

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function CreateAdmin() {
+  const apiUrl = import.meta.env.VITE_BASE_URL_API;
   const navigate = useNavigate();
 
   const [firstname, setFirstname] = useState("");
@@ -31,7 +32,7 @@ function CreateAdmin() {
     const createAdmin = async () => {
       await axios({
         method: "POST",
-        url: "http://localhost:3000/admins",
+        url: "${apiUrl}admins",
         data: {
           firstname: firstname,
           lastname: lastname,
@@ -48,14 +49,14 @@ function CreateAdmin() {
 
   return (
     <>
-      <div className="container-fluid p-0">
-        <div className="row">
+      <div className="container-fluid g-0">
+        <div className="row g-0">
           <Sidebar />
-          <div className="col-10 p-0 vh-100 d-flex flex-column">
+          <div className="col-10 g-0 d-flex flex-column">
             <Topbar name="Admin nuevo" />
-            <section className="lightcream flex-grow-1 h-100 p-3">
+            <section className="lightcream flex-grow-1 p-3">
               <div className="container">
-                <div className="row">
+                <div className="row g-0">
                   <div className="col myInputWidth">
                     <form onSubmit={handleSubmit}>
                       <div className="input-group mb-3">
@@ -110,7 +111,9 @@ function CreateAdmin() {
                           aria-describedby="password"
                         />
                       </div>
-                      <button type="submit" className="btn btn-orange-fill">Crear</button>
+                      <button type="submit" className="btn btn-orange-fill">
+                        Crear
+                      </button>
                     </form>
                   </div>
                 </div>

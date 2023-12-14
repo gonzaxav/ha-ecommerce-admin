@@ -7,17 +7,19 @@ import { useNavigate } from "react-router-dom";
 import ProductosTr from "../components/ProductosTr";
 
 function Ordenes() {
+  const apiUrl = import.meta.env.VITE_BASE_URL_API;
   const [productos, setProductos] = useState(null);
   const [trigger, setTrigger] = useState(false);
   const navigate = useNavigate();
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/products?includeinactive=true`)
+      .get(`${apiUrl}products?includeinactive=true&buscar=${search}`)
       .then((response) => {
         setProductos(response.data.products);
       });
-  }, [trigger]);
+  }, [trigger, search]);
 
   const handleClickCrear = () => {
     navigate("crear");
@@ -25,13 +27,17 @@ function Ordenes() {
 
   return (
     <>
-      <div className="container-fluid p-0">
-        <div className="row">
+      <div className="container-fluid g-0">
+        <div className="row g-0">
           <Sidebar />
-          <div className="col-10 p-0 vh-100 d-flex flex-column">
-            <Topbar name="Productos" />
-            <section className="lightcream flex-grow-1 h-100 p-3">
-              <div className="rounded overflow-hidden">
+          <div className="col-10 g-0 d-flex flex-column">
+            <Topbar
+              name="Productos"
+              placeholder="por id, nombre, descripción"
+              setSearch={setSearch}
+            />
+            <section className="lightcream flex-grow-1 p-3">
+              <div className="rounded">
                 <button
                   className="btn btn-orange-fill mb-3"
                   onClick={handleClickCrear}

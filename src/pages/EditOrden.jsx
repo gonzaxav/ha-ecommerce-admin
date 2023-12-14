@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function EditOrden() {
+  const apiUrl = import.meta.env.VITE_BASE_URL_API;
   const navigate = useNavigate();
   const params = useParams();
 
@@ -12,7 +13,7 @@ function EditOrden() {
   const [orderstate, setOrderstate] = useState("");
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/orders/${params.id}`).then((response) => {
+    axios.get(`${apiUrl}orders/${params.id}`).then((response) => {
       setOrderstate(response.data.order.orderstate);
       setOrder(response.data.order);
     });
@@ -28,7 +29,7 @@ function EditOrden() {
     const updateOrder = async () => {
       await axios({
         method: "PATCH",
-        url: `http://localhost:3000/orders/${params.id}`,
+        url: `${apiUrl}orders/${params.id}`,
         data: {
           orderstate: orderstate,
         },
@@ -42,14 +43,14 @@ function EditOrden() {
   return (
     order && (
       <>
-        <div className="container-fluid p-0">
-          <div className="row">
+        <div className="container-fluid g-0">
+          <div className="row g-0">
             <Sidebar />
-            <div className="col-10 p-0 vh-100 d-flex flex-column">
+            <div className="col-10 g-0 d-flex flex-column">
               <Topbar name={order._id} />
-              <section className="lightcream flex-grow-1 h-100 p-3">
+              <section className="lightcream flex-grow-1 p-3">
                 <div className="container">
-                  <div className="row">
+                  <div className="row g-0">
                     <div className="col myInputWidth">
                       <div className="input-group mb-3">
                         <span className="input-group-text" id="firstname">
@@ -67,7 +68,10 @@ function EditOrden() {
                           <option value="entregado">entregado</option>
                         </select>
                       </div>
-                      <button className="btn btn-transparent btn-orange-transparent" onClick={handleSubmit}>
+                      <button
+                        className="btn btn-transparent btn-orange-transparent"
+                        onClick={handleSubmit}
+                      >
                         Guardar
                       </button>
                     </div>
