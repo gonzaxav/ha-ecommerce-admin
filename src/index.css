@@ -28,6 +28,11 @@ section.lightcream{
   background-color: var(--lightcream);
 }
 
+section.black{
+  background-color: var(--black);
+  color: var(--lightcream);
+}
+
 .bgDark{
   background-color: var(--black);
 }

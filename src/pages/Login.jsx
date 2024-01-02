@@ -5,11 +5,12 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/adminSlice";
 import { useNavigate } from "react-router-dom";
+import Logo from "../img/logo.png";
 
 function Login() {
   const apiUrl = import.meta.env.VITE_BASE_URL_API;
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("diossanto@admin.com");
+  const [password, setPassword] = useState("1234");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [msg, setMsg] = useState(null);
@@ -18,24 +19,30 @@ function Login() {
     e.preventDefault();
     const response = await axios({
       method: "POST",
-      url: "${apiUrl}admin/tokens",
+      url: `${apiUrl}admin/tokens`,
       data: {
         email,
-
         password,
       },
     });
     response.data.msg && setMsg(response.data.msg);
     response.data.token &&
-      (dispatch(login(response.data.token)), navigate("/"));
+      (dispatch(login(response.data.token)), navigate("/dashboard"));
   };
   return (
     <>
-      <section className="section-login">
-        <div className="container d-flex align-items-center justify-content-center vh-100">
-          <div className="row row-form">
-            <div className=" col-12 login">
-              <h1 className="login-title">Login</h1>
+      <section className="black d-flex align-items-center justify-content-center vh-100">
+        <div className="container">
+          <div className="row">
+            <div className="col d-flex align-items-center justify-content-end py-5 px-6">
+              <img src={Logo} className="w-50"></img>
+            </div>
+            <div class="vertical-line m-0 p-0 g-0"></div>
+            <div className="col py-5 px-6">
+              <h1 className="text-center mb-3">Bienvenido/a</h1>
+              <h2 className="text-center mb-5">
+                Inicia sesión para administrador.
+              </h2>
               <div className="div-form">
                 <form onSubmit={handleLogin}>
                   <div className="mb-3">
@@ -71,10 +78,10 @@ function Login() {
                   </div>
 
                   <p className="text-danger"> {msg && msg}&nbsp;</p>
-                  <div className="div-btn col-6  mb-3  d-flex">
+                  <div className="d-flex">
                     <button
                       type="submit"
-                      className=" button-login btn btn-ligth"
+                      className="btn btn-orange-fill button-login"
                     >
                       Login
                     </button>

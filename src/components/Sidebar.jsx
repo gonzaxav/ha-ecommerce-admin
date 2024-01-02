@@ -17,7 +17,7 @@ function Sidebar() {
           <div className="bgDark text-light">
             <div className="d-flex flex-column gap-2 vh-100 py-5">
               <img className="logo align-self-center mb-5" src={Logo}></img>
-              <button className="btn btn-dark myBgDark" onClick={() => handleClick("")}>Dashboard</button>
+              <button className="btn btn-dark myBgDark" onClick={() => handleClick("dashboard")}>Dashboard</button>
               <button className="btn btn-dark myBgDark" onClick={() => handleClick("admin")}>Admin</button>
               <button className="btn btn-dark myBgDark" onClick={() => handleClick("ordenes")}>Ordenes</button>
               <button className="btn btn-dark myBgDark" onClick={() => handleClick("productos")}>Productos</button>
