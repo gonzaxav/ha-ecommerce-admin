@@ -213,3 +213,7 @@ i.red{
   border-radius: 5px;
   background-color: rgba(130, 130, 130, 0.1);
 }
+
+.bestseller-img{
+  height: 100px;
+}
