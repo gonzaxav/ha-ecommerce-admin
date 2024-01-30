@@ -3,6 +3,8 @@ import Topbar from "../components/Topbar";
 import Chart from "react-apexcharts";
 
 function Dashboard() {
+  const supabaseUrl = import.meta.env.VITE_BASE_URL_SUPABASE;
+
   return (
     <>
       <div className="container-fluid g-0">
@@ -12,7 +14,7 @@ function Dashboard() {
             <Topbar name="Dashboard" />
             <section className="lightcream flex-grow-1">
               <div className="container-fluid">
-                <div className="row px-5 pt-5 pb-4">
+                <div className="row px-4 py-3">
                   <div className="col-4">
                     <div className="card h-100">
                       <div className="card-header">
@@ -46,10 +48,10 @@ function Dashboard() {
                           MÁS VENDIDO
                         </h5>
                       </div>
-                      <div className="card-body d-flex flex-wrap justify-content-center px-5 py-2">
+                      <div className="card-body d-flex flex-column align-items-center justify-content-center px-5 py-2">
                         <img
                           className="bestseller-img"
-                          src="https://sfcesuatfinxjxgaclzt.supabase.co/storage/v1/object/public/img/cafe-en-grano.png"
+                          src={`${supabaseUrl}cafe-en-grano.png`}
                         ></img>
                         <span className="card-text text-center fw-bold fs-5">
                           Café de la Casa
@@ -58,7 +60,7 @@ function Dashboard() {
                     </div>
                   </div>
                 </div>
-                <div className="row px-5 pt-4 pb-5">
+                <div className="row px-4 py-3">
                   <div className="dashboard-graphic">
                     <div className="card p-3">
                       <Chart
@@ -93,7 +95,7 @@ function Dashboard() {
                           {
                             name: "Ganancia",
                             data: [
-                              15, 22, 24, 26, 25, 32, 29, 37, 29, 27, 24, 26,
+                              7, 15, 18, 21, 22, 29, 22, 31, 22, 21, 22, 21,
                             ],
                           },
                         ]}

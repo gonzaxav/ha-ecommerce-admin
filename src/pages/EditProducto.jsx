@@ -49,11 +49,12 @@ function EditProducto() {
 
   useEffect(() => {
     axios.get(`${apiUrl}products/${params.slug}`).then((response) => {
+      console.log(response.data.product);
       setName(response.data.product.name);
       setDescription(response.data.product.description);
       setPrice(response.data.product.price);
       setStock(response.data.product.stock);
-      setCategory(response.data.product.category);
+      setCategory(response.data.product.category._id);
       setFeatured(response.data.product.featured);
       setShortDescription(response.data.product.shortDescription);
     });

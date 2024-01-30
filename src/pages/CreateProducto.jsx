@@ -53,7 +53,7 @@ function CreateProducto() {
     const createProducto = async () => {
       await axios({
         method: "POST",
-        url: "${apiUrl}products",
+        url: `${apiUrl}products`,
         data: formData,
         headers: {
           "content-Type": "multipart/form-data",
