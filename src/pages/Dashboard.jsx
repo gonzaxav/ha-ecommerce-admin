@@ -12,8 +12,8 @@ function Dashboard() {
             <Topbar name="Dashboard" />
             <section className="lightcream flex-grow-1">
               <div className="container-fluid">
-                <div className="row p-5">
-                  <div className="col-3">
+                <div className="row px-5 pt-5 pb-4">
+                  <div className="col-4">
                     <div className="card h-100">
                       <div className="card-header">
                         <h5 className="card-title text-center m-2">VENTAS</h5>
@@ -25,7 +25,7 @@ function Dashboard() {
                       </div>
                     </div>
                   </div>
-                  <div className="col-3">
+                  <div className="col-4">
                     <div className="card h-100">
                       <div className="card-header">
                         <h5 className="card-title text-center m-2">
@@ -39,11 +39,11 @@ function Dashboard() {
                       </div>
                     </div>
                   </div>
-                  <div className="col-3">
+                  <div className="col-4">
                     <div className="card h-100">
                       <div className="card-header">
                         <h5 className="card-title text-center m-2">
-                          MEJOR VENDIDO
+                          MÁS VENDIDO
                         </h5>
                       </div>
                       <div className="card-body d-flex flex-wrap justify-content-center px-5 py-2">
@@ -58,9 +58,9 @@ function Dashboard() {
                     </div>
                   </div>
                 </div>
-                <div className="row p-5">
-                  <div className="col-5">
-                    <div className="card">
+                <div className="row px-5 pt-4 pb-5">
+                  <div className="dashboard-graphic">
+                    <div className="card p-3">
                       <Chart
                         options={{
                           chart: {
@@ -98,7 +98,7 @@ function Dashboard() {
                           },
                         ]}
                         type="line"
-                        width={500}
+                        width={"100%"}
                         height={320}
                       />
                     </div>

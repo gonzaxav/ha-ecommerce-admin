@@ -37,7 +37,7 @@ function Login() {
             <div className="col d-flex align-items-center justify-content-end py-5 px-6">
               <img src={Logo} className="w-50"></img>
             </div>
-            <div class="vertical-line m-0 p-0 g-0"></div>
+            <div className="vertical-line m-0 p-0 g-0"></div>
             <div className="col py-5 px-6">
               <h1 className="text-center mb-3">Bienvenido/a</h1>
               <h2 className="text-center mb-5">
