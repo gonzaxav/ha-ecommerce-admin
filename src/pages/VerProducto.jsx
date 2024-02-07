@@ -29,7 +29,7 @@ function VerProducto() {
                   <div className="row g-0">
                     <div className="col-6 col-lg-5 mb-4">
                       <img
-                        src={`${supabaseUrl}img/${product.photo[0]}`}
+                        src={`${supabaseUrl}${product.photo[0]}`}
                         className="img"
                       ></img>
                     </div>
